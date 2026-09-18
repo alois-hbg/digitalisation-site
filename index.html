@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vialia — Gestion de stock pour cliniques d'esthétique</title>
+<meta name="description" content="Vialia simplifie la gestion de stock des cliniques de médecine esthétique : suivi en temps réel, alertes de rupture, un outil au lieu des post-its et des tableurs.">
+<meta name="theme-color" content="#0F4C57">
+<link rel="canonical" href="https://vialia.fr/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Vialia — Gestion de stock pour cliniques d'esthétique">
+<meta property="og:description" content="Suivi de stock en temps réel, alertes de rupture, un outil pensé pour les cliniques de médecine esthétique.">
+<meta property="og:image" content="https://vialia.fr/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root{--paper:#F4F6F5;--ink:#12262B;--muted:#4A6068;--petrol:#0F4C57;--rose:#9E4E63;--card:#fff;--line:rgba(18,38,43,.1);--btn-fg:#fff}
+@media (prefers-color-scheme:dark){:root{--paper:#0D1A1D;--ink:#E9F0EE;--muted:#A3B7B6;--petrol:#8FD0DA;--rose:#E7A3B3;--card:#122327;--line:rgba(233,240,238,.12);--btn-fg:#07171A}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+font-family:Georgia,"Times New Roman",serif;font-size:1.05rem;line-height:1.6}
+a{color:var(--petrol)}
+h1,h2,h3,.brand,nav a,.btn,label,.eyebrow{font-family:"Helvetica Neue",Arial,sans-serif}
+
+header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--paper);
+border-bottom:1px solid var(--line);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.brand{display:flex;align-items:center;gap:.6rem;font-weight:700;font-size:1.1rem;text-decoration:none;color:var(--ink)}
+.brand svg{width:28px;height:28px;flex:none}
+nav.site-nav{display:flex;gap:1.5rem;align-items:center}
+nav.site-nav a{font-weight:600;font-size:.9rem;text-decoration:none;color:var(--ink)}
+nav.site-nav a:hover{color:var(--petrol)}
+nav.site-nav a.cta{background:var(--petrol);color:var(--btn-fg);padding:.6rem 1.1rem;border-radius:6px}
+nav.site-nav a.cta:hover{opacity:.9}
+
+.wrap{width:min(100% - 3rem,72rem);margin-inline:auto}
+
+.hero{padding:4.5rem 0 4rem}
+.eyebrow{font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--rose);margin:0 0 1rem}
+.hero h1{font-weight:700;letter-spacing:-.02em;font-size:clamp(2rem,1.3rem + 3vw,3.1rem);line-height:1.08;margin:0 0 1.1rem;max-width:22ch}
+.hero p.lead{max-width:52ch;color:var(--muted);font-size:1.15rem;margin:0 0 2rem}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{display:inline-block;font-weight:600;font-size:.95rem;text-decoration:none;padding:.9rem 1.6rem;border-radius:8px;border:1px solid transparent;cursor:pointer}
+.btn-primary{background:var(--petrol);color:var(--btn-fg)}
+.btn-primary:hover{opacity:.92}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--petrol)}
+
+section{padding:3.5rem 0}
+section h2{font-weight:700;letter-spacing:-.01em;font-size:clamp(1.5rem,1.2rem + 1vw,2rem);margin:0 0 .5rem}
+section p.section-lead{color:var(--muted);max-width:56ch;margin:0 0 2.2rem}
+
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem}
+.feature{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.6rem}
+.feature .num{font-family:"Helvetica Neue",Arial,sans-serif;font-weight:700;color:var(--rose);font-size:.85rem;margin:0 0 .8rem}
+.feature h3{font-size:1.1rem;margin:0 0 .5rem}
+.feature p{color:var(--muted);margin:0}
+
+.team-teaser{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
+.team-teaser p{margin:0;color:var(--muted);max-width:44ch}
+
+.contact{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:2.2rem}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+.field{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.1rem}
+.field.full{grid-column:1 / -1}
+label{font-weight:600;font-size:.85rem}
+input,select,textarea{font:inherit;font-size:.95rem;padding:.7rem .8rem;border-radius:7px;border:1px solid var(--line);background:var(--paper);color:var(--ink)}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--petrol);outline-offset:1px}
+.consent{display:flex;flex-direction:row;align-items:flex-start;gap:.6rem;grid-column:1 / -1}
+.consent input{margin-top:.3rem}
+.consent label{font-weight:400;font-size:.9rem;color:var(--muted)}
+.hp{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.form-msg{margin-top:1rem;font-family:"Helvetica Neue",Arial,sans-serif;font-weight:600;font-size:.9rem}
+.form-msg.ok{color:#2E7D32}
+.form-msg.err{color:var(--rose)}
+@media (max-width:640px){.contact-grid{grid-template-columns:1fr}}
+
+footer.site{border-top:1px solid var(--line);padding:2rem 0;margin-top:2rem}
+footer.site .wrap{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center;
+font-family:"Helvetica Neue",Arial,sans-serif;font-size:.85rem;color:var(--muted)}
+footer.site a{color:var(--muted);text-decoration:none}
+footer.site a:hover{color:var(--petrol)}
+footer.site .links{display:flex;gap:1.2rem}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <a class="brand" href="/">
+    <svg viewBox="0 0 64 64" role="img" aria-label="Vialia">
+      <rect width="64" height="64" rx="14" fill="var(--petrol)"></rect>
+      <path d="M18 18 L32 46 L46 18" fill="none" stroke="var(--paper)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+    Vialia
+  </a>
+  <nav class="site-nav">
+    <a href="#fonctionnalites">Fonctionnalités</a>
+    <a href="/equipe">Équipe</a>
+    <a class="cta" href="#contact">Demander une démo</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Gestion de stock — cliniques d'esthétique</p>
+      <h1>Vos stocks sous contrôle, sans y penser</h1>
+      <p class="lead">Vialia remplace le fichier Excel et les post-its par un suivi de stock en temps réel, pensé pour les cliniques de médecine esthétique et leurs praticiens.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contact">Demander une démo</a>
+        <a class="btn btn-ghost" href="#fonctionnalites">Voir comment ça marche</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="fonctionnalites">
+    <div class="wrap">
+      <h2>Ce que Vialia gère pour vous</h2>
+      <p class="section-lead">Un outil unique pour toute l'équipe, du planning d'injectables à la commande de consommables.</p>
+      <div class="features">
+        <div class="feature">
+          <p class="num">01</p>
+          <h3>Suivi en temps réel</h3>
+          <p>Chaque entrée et sortie de produit (toxine botulique, acide hyaluronique, consommables) est enregistrée et visible instantanément par toute l'équipe.</p>
+        </div>
+        <div class="feature">
+          <p class="num">02</p>
+          <h3>Alertes de rupture</h3>
+          <p>Vialia prévient avant la rupture de stock ou l'approche d'une date de péremption, pour ne plus jamais annuler un rendez-vous faute de produit.</p>
+        </div>
+        <div class="feature">
+          <p class="num">03</p>
+          <h3>Multi-praticiens, multi-sites</h3>
+          <p>Chaque praticien et chaque site voit son propre stock, tandis que la direction garde une vue d'ensemble consolidée.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="team-teaser">
+        <div>
+          <h2>Une équipe de 2 personnes, à votre écoute</h2>
+          <p>Vialia est co-dirigée par deux CEO, l'une côté business et relation clientes, l'autre côté produit et technique.</p>
+        </div>
+        <a class="btn btn-ghost" href="/equipe">Découvrir l'équipe</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <h2>Demander une démo</h2>
+      <p class="section-lead">Remplissez le formulaire, nous revenons vers vous sous 24h ouvrées.</p>
+
+      <form class="contact" id="contact-form" novalidate>
+        <div class="contact-grid">
+          <div class="field">
+            <label for="nom">Nom *</label>
+            <input type="text" id="nom" name="nom" required minlength="2" maxlength="80" autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="clinique">Nom de la clinique *</label>
+            <input type="text" id="clinique" name="clinique" required minlength="2" maxlength="100" autocomplete="organization">
+          </div>
+          <div class="field">
+            <label for="email">E-mail *</label>
+            <input type="email" id="email" name="email" required maxlength="120" autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="telephone">Téléphone</label>
+            <input type="tel" id="telephone" name="telephone" maxlength="20" autocomplete="tel" placeholder="+33 6 12 34 56 78">
+          </div>
+          <div class="field full">
+            <label for="praticiens">Taille de l'équipe *</label>
+            <select id="praticiens" name="praticiens" required>
+              <option value="" disabled selected>Sélectionnez…</option>
+              <option value="1">1 praticien</option>
+              <option value="2-4">2 à 4 praticiens</option>
+              <option value="5+">5 praticiens ou plus</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" rows="4" required minlength="2" maxlength="1200"></textarea>
+          </div>
+
+          <input class="hp" type="text" id="site_web" name="site_web" tabindex="-1" autocomplete="off">
+
+          <div class="consent">
+            <input type="checkbox" id="consentement" name="consentement" required>
+            <label for="consentement">J'accepte d'être recontacté(e) par Vialia au sujet de ma demande. *</label>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit" id="submit-btn">Envoyer ma demande</button>
+        <p class="form-msg" id="form-msg" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>© <span id="year"></span> Vialia</span>
+    <nav class="links">
+      <a href="/rgpd">RGPD</a>
+      <a href="/cgu">CGU</a>
+      <a href="/equipe">Équipe</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+var form = document.getElementById('contact-form');
+var msg = document.getElementById('form-msg');
+var btn = document.getElementById('submit-btn');
+
+form.addEventListener('submit', async function (e) {
+  e.preventDefault();
+  msg.textContent = '';
+  msg.className = 'form-msg';
+  btn.disabled = true;
+  btn.textContent = 'Envoi en cours…';
+
+  var payload = {
+    nom: form.nom.value.trim(),
+    clinique: form.clinique.value.trim(),
+    email: form.email.value.trim(),
+    telephone: form.telephone.value.trim(),
+    praticiens: form.praticiens.value,
+    message: form.message.value.trim(),
+    consentement: form.consentement.checked,
+    site_web: form.site_web.value,
+    ts: window.__formLoadedAt || Date.now()
+  };
+
+  try {
+    var res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    var data = await res.json().catch(function () { return {}; });
+
+    if (res.ok && data.ok) {
+      msg.textContent = 'Merci, votre demande a bien été envoyée. Nous revenons vers vous sous 24h.';
+      msg.className = 'form-msg ok';
+      form.reset();
+    } else {
+      msg.textContent = data.error || 'Une erreur est survenue. Réessayez dans un instant.';
+      msg.className = 'form-msg err';
+    }
+  } catch (err) {
+    msg.textContent = 'Impossible d\'envoyer le formulaire pour le moment. Réessayez plus tard.';
+    msg.className = 'form-msg err';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Envoyer ma demande';
+  }
+});
+
+window.__formLoadedAt = Date.now();
+</script>
+</body>
+</html>
