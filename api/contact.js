@@ -1,10 +1,13 @@
 // POST /api/contact
-// Tourne côté serveur (Vercel Functions). Aucune clé ni URL de service n'est
-// exposée au navigateur : le front n'appelle que cette route.
+// Tourne côté serveur (Vercel Functions). Aucune clé n'est exposée au
+// navigateur : le front n'appelle que cette route, qui envoie ensuite
+// l'e-mail via l'API Resend (https://resend.com).
 //
 // Variables d'environnement à définir dans Vercel :
-//   N8N_CONTACT_WEBHOOK   URL du webhook n8n qui traite la demande
-//   N8N_WEBHOOK_TOKEN     jeton partagé, envoyé en en-tête à n8n
+//   RESEND_API_KEY      clé API Resend (Dashboard → API Keys)
+//   CONTACT_TO_EMAIL    boîte mail qui reçoit les demandes (défaut ci-dessous)
+//   CONTACT_FROM_EMAIL  expéditeur affiché ; tant qu'aucun domaine n'est
+//                       vérifié dans Resend, garder "onboarding@resend.dev"
 
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000; // 10 minutes
 const RATE_LIMIT_MAX = 3;                    // 3 demandes par IP et par fenêtre
@@ -77,33 +80,49 @@ export default async function handler(req, res) {
     return res.status(200).json({ ok: true }); // absorbé silencieusement
   }
 
-  const webhook = process.env.N8N_CONTACT_WEBHOOK;
-  if (!webhook) {
-    console.error('N8N_CONTACT_WEBHOOK absent');
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.error('RESEND_API_KEY absent');
     return res.status(500).json({ error: 'Service indisponible.' });
   }
+
+  const to = process.env.CONTACT_TO_EMAIL || 'vialia.contact@gmail.com';
+  const from = process.env.CONTACT_FROM_EMAIL || 'Vialia <onboarding@resend.dev>';
+  const esc = (v) => String(v).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+  const html = `
+    <h2>Nouvelle demande de démo — ${esc(data.clinique)}</h2>
+    <p><strong>Nom :</strong> ${esc(data.nom)}</p>
+    <p><strong>Clinique :</strong> ${esc(data.clinique)}</p>
+    <p><strong>E-mail :</strong> ${esc(data.email)}</p>
+    <p><strong>Téléphone :</strong> ${esc(data.telephone || '—')}</p>
+    <p><strong>Taille de l'équipe :</strong> ${esc(data.praticiens)}</p>
+    <p><strong>Message :</strong><br>${esc(data.message).replace(/\n/g, '<br>')}</p>
+    <p><small>Reçu le ${new Date().toLocaleString('fr-FR')} — consentement horodaté le ${new Date(ts).toLocaleString('fr-FR')}</small></p>
+  `;
 
   try {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 8000);
-    const r = await fetch(webhook, {
+    const r = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-Vialia-Token': process.env.N8N_WEBHOOK_TOKEN || '',
+        Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        ...data,
-        source: 'site-vialia',
-        recu_le: new Date().toISOString(),
-        consentement_horodate: new Date(ts).toISOString(),
+        from,
+        to,
+        reply_to: data.email,
+        subject: `Nouvelle demande de démo — ${data.clinique}`,
+        html,
       }),
       signal: controller.signal,
     });
     clearTimeout(timeout);
-    if (!r.ok) throw new Error('n8n ' + r.status);
+    if (!r.ok) throw new Error('resend ' + r.status);
   } catch (e) {
-    console.error('Relais n8n en échec', e);
+    console.error('Envoi Resend en échec', e);
     return res.status(502).json({ error: 'Envoi impossible pour le moment.' });
   }
 
