@@ -10,7 +10,7 @@
 <link rel="canonical" href="https://vialia.fr/rgpd">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <style>
-:root{--paper:#F4F6F5;--ink:#12262B;--muted:#4A6068;--petrol:#0F4C57;--rose:#9E4E63;--card:#fff;--line:rgba(18,38,43,.1)}
+:root{--paper:#F4F6F5;--ink:#12262B;--muted:#4A6068;--petrol:#0F4C57;--rose:#9E4E63;--card:#fff;--line:rgba(18,38,43,.1);--radius:3px}
 @media (prefers-color-scheme:dark){:root{--paper:#0D1A1D;--ink:#E9F0EE;--muted:#A3B7B6;--petrol:#8FD0DA;--rose:#E7A3B3;--card:#122327;--line:rgba(233,240,238,.12)}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:Georgia,"Times New Roman",serif;font-size:1.05rem;line-height:1.65}
@@ -19,7 +19,7 @@ a{color:var(--petrol)}
 .back{font-family:"Helvetica Neue",Arial,sans-serif;font-weight:600;font-size:.9rem;text-decoration:none}
 h1{font-family:"Helvetica Neue",Arial,sans-serif;font-weight:700;letter-spacing:-.02em;font-size:clamp(1.7rem,1.3rem + 1.6vw,2.3rem);line-height:1.15;margin:1.2rem 0 .3em}
 .updated{color:var(--muted);font-family:"Helvetica Neue",Arial,sans-serif;font-size:.85rem;margin:0 0 2rem}
-.notice{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1rem 1.2rem;font-family:"Helvetica Neue",Arial,sans-serif;font-size:.85rem;color:var(--muted);margin-bottom:2.5rem}
+.notice{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1rem 1.2rem;font-family:"Helvetica Neue",Arial,sans-serif;font-size:.85rem;color:var(--muted);margin-bottom:2.5rem}
 h2{font-family:"Helvetica Neue",Arial,sans-serif;font-size:1.2rem;margin:2.2rem 0 .8rem}
 p,li{color:var(--ink)}
 ul{padding-left:1.2rem}

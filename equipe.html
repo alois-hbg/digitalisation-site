@@ -9,8 +9,8 @@
 <link rel="canonical" href="https://vialia.fr/equipe">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <style>
-:root{--paper:#F4F6F5;--ink:#12262B;--muted:#4A6068;--petrol:#0F4C57;--rose:#9E4E63;--card:#fff;--btn-fg:#fff}
-@media (prefers-color-scheme:dark){:root{--paper:#0D1A1D;--ink:#E9F0EE;--muted:#A3B7B6;--petrol:#8FD0DA;--rose:#E7A3B3;--card:#122327;--btn-fg:#07171A}}
+:root{--paper:#F4F6F5;--ink:#12262B;--muted:#4A6068;--petrol:#0F4C57;--rose:#9E4E63;--card:#fff;--line:rgba(18,38,43,.1);--btn-fg:#fff;--radius:3px}
+@media (prefers-color-scheme:dark){:root{--paper:#0D1A1D;--ink:#E9F0EE;--muted:#A3B7B6;--petrol:#8FD0DA;--rose:#E7A3B3;--card:#122327;--line:rgba(233,240,238,.12);--btn-fg:#07171A}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);
 font-family:Georgia,"Times New Roman",serif;font-size:1.05rem;line-height:1.6}
@@ -21,7 +21,7 @@ h1{font-family:"Helvetica Neue",Arial,sans-serif;font-weight:700;letter-spacing:
 font-size:clamp(1.9rem,1.4rem + 2.2vw,2.6rem);line-height:1.1;margin:1.5rem 0 .6em}
 .lead{max-width:60ch;color:var(--muted);margin:0 0 2.5rem}
 .team{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.75rem}
-.card{background:var(--card);border-radius:12px;padding:1.75rem;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1.75rem}
 .avatar{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;
 font-family:"Helvetica Neue",Arial,sans-serif;font-weight:700;font-size:1.3rem;color:var(--btn-fg);margin-bottom:1.1rem}
 .avatar.petrol{background:var(--petrol)}

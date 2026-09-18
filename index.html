@@ -16,7 +16,7 @@
 <meta property="og:image" content="https://vialia.fr/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <style>
-:root{--paper:#F4F6F5;--ink:#12262B;--muted:#4A6068;--petrol:#0F4C57;--rose:#9E4E63;--card:#fff;--line:rgba(18,38,43,.1);--btn-fg:#fff}
+:root{--paper:#F4F6F5;--ink:#12262B;--muted:#4A6068;--petrol:#0F4C57;--rose:#9E4E63;--card:#fff;--line:rgba(18,38,43,.1);--btn-fg:#fff;--radius:3px}
 @media (prefers-color-scheme:dark){:root{--paper:#0D1A1D;--ink:#E9F0EE;--muted:#A3B7B6;--petrol:#8FD0DA;--rose:#E7A3B3;--card:#122327;--line:rgba(233,240,238,.12);--btn-fg:#07171A}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);
@@ -31,7 +31,7 @@ border-bottom:1px solid var(--line);padding:1rem 1.5rem;display:flex;align-items
 nav.site-nav{display:flex;gap:1.5rem;align-items:center}
 nav.site-nav a{font-weight:600;font-size:.9rem;text-decoration:none;color:var(--ink)}
 nav.site-nav a:hover{color:var(--petrol)}
-nav.site-nav a.cta{background:var(--petrol);color:var(--btn-fg);padding:.6rem 1.1rem;border-radius:6px}
+nav.site-nav a.cta{background:var(--petrol);color:var(--btn-fg);padding:.6rem 1.1rem;border-radius:var(--radius)}
 nav.site-nav a.cta:hover{opacity:.9}
 
 .wrap{width:min(100% - 3rem,72rem);margin-inline:auto}
@@ -41,7 +41,7 @@ nav.site-nav a.cta:hover{opacity:.9}
 .hero h1{font-weight:700;letter-spacing:-.02em;font-size:clamp(2rem,1.3rem + 3vw,3.1rem);line-height:1.08;margin:0 0 1.1rem;max-width:22ch}
 .hero p.lead{max-width:52ch;color:var(--muted);font-size:1.15rem;margin:0 0 2rem}
 .hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
-.btn{display:inline-block;font-weight:600;font-size:.95rem;text-decoration:none;padding:.9rem 1.6rem;border-radius:8px;border:1px solid transparent;cursor:pointer}
+.btn{display:inline-block;font-weight:600;font-size:.95rem;text-decoration:none;padding:.9rem 1.6rem;border-radius:var(--radius);border:1px solid transparent;cursor:pointer}
 .btn-primary{background:var(--petrol);color:var(--btn-fg)}
 .btn-primary:hover{opacity:.92}
 .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
@@ -52,20 +52,20 @@ section h2{font-weight:700;letter-spacing:-.01em;font-size:clamp(1.5rem,1.2rem +
 section p.section-lead{color:var(--muted);max-width:56ch;margin:0 0 2.2rem}
 
 .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem}
-.feature{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.6rem}
+.feature{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem}
 .feature .num{font-family:"Helvetica Neue",Arial,sans-serif;font-weight:700;color:var(--rose);font-size:.85rem;margin:0 0 .8rem}
 .feature h3{font-size:1.1rem;margin:0 0 .5rem}
 .feature p{color:var(--muted);margin:0}
 
-.team-teaser{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
+.team-teaser{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
 .team-teaser p{margin:0;color:var(--muted);max-width:44ch}
 
-.contact{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:2.2rem}
+.contact{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:2.2rem}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
 .field{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.1rem}
 .field.full{grid-column:1 / -1}
 label{font-weight:600;font-size:.85rem}
-input,select,textarea{font:inherit;font-size:.95rem;padding:.7rem .8rem;border-radius:7px;border:1px solid var(--line);background:var(--paper);color:var(--ink)}
+input,select,textarea{font:inherit;font-size:.95rem;padding:.7rem .8rem;border-radius:var(--radius);border:1px solid var(--line);background:var(--paper);color:var(--ink)}
 input:focus,select:focus,textarea:focus{outline:2px solid var(--petrol);outline-offset:1px}
 .consent{display:flex;flex-direction:row;align-items:flex-start;gap:.6rem;grid-column:1 / -1}
 .consent input{margin-top:.3rem}
