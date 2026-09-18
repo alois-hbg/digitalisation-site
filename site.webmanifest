@@ -1,0 +1,13 @@
+{
+  "name": "Vialia",
+  "short_name": "Vialia",
+  "description": "Gestion de stock pour cliniques de médecine esthétique",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#F4F6F5",
+  "theme_color": "#0F4C57",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

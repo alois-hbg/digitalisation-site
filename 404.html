@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page introuvable — Vialia</title>
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#0F4C57">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+:root{--paper:#F4F6F5;--ink:#12262B;--muted:#4A6068;--petrol:#0F4C57;--rose:#9E4E63;--btn-fg:#fff}
+@media (prefers-color-scheme:dark){:root{--paper:#0D1A1D;--ink:#E9F0EE;--muted:#A3B7B6;--petrol:#8FD0DA;--rose:#E7A3B3;--btn-fg:#07171A}}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+background:var(--paper);color:var(--ink);
+font-family:Georgia,"Times New Roman",serif;font-size:1.05rem;line-height:1.6}
+.wrap{width:min(100% - 2.5rem,40rem);margin-inline:auto}
+h1{font-family:"Helvetica Neue",Arial,sans-serif;font-weight:700;letter-spacing:-.02em;
+font-size:clamp(1.9rem,1.4rem + 2.2vw,2.8rem);line-height:1.1;margin:0 0 .6em}
+p{max-width:60ch;color:var(--muted);margin:0 0 1.4em}
+a.cta{display:inline-block;background:var(--petrol);color:var(--btn-fg);text-decoration:none;
+font-family:"Helvetica Neue",Arial,sans-serif;font-weight:600;font-size:.95rem;
+padding:.85rem 1.4rem;border-radius:4px}
+a.cta:focus-visible{outline:3px solid var(--rose);outline-offset:3px}
+.mark{width:30px;height:30px;margin-bottom:2rem;display:block}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <svg class="mark" viewBox="0 0 64 64" role="img" aria-label="Vialia">
+    <rect width="64" height="64" rx="14" fill="var(--petrol)"></rect>
+    <path d="M18 18 L32 46 L46 18" fill="none" stroke="var(--paper)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"></path>
+  </svg>
+  <h1>Cette page n'existe pas</h1>
+  <p>L'adresse demandée n'a pas été trouvée. Elle a peut-être été déplacée, ou le lien comporte une erreur de frappe.</p>
+  <p><a class="cta" href="/">Revenir à l'accueil</a></p>
+</div>
+</body>
+</html>

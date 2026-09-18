@@ -1,0 +1,12 @@
+# https://vialia.fr/robots.txt
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Aspirateurs de contenu
+User-agent: AhrefsBot
+Disallow: /
+User-agent: SemrushBot
+Disallow: /
+
+Sitemap: https://vialia.fr/sitemap.xml
