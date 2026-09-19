@@ -1,7 +1,7 @@
 {
   "name": "Vialia",
   "short_name": "Vialia",
-  "description": "Gestion de stock pour cliniques de médecine esthétique",
+  "description": "Gestion de stock pour les professionnels de santé",
   "start_url": "/",
   "display": "browser",
   "background_color": "#F4F6F5",

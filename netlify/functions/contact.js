@@ -73,7 +73,7 @@ exports.handler = async (event) => {
   };
 
   if (data.nom.length < 2) return json(422, { error: 'Nom manquant.' });
-  if (data.clinique.length < 2) return json(422, { error: 'Clinique manquante.' });
+  if (data.clinique.length < 2) return json(422, { error: 'Établissement manquant.' });
   if (!isEmail(data.email)) return json(422, { error: 'E-mail invalide.' });
   if (!['1', '2-4', '5+'].includes(data.praticiens)) {
     return json(422, { error: 'Taille d’équipe invalide.' });
@@ -99,7 +99,7 @@ exports.handler = async (event) => {
   const html = `
     <h2>Nouvelle demande de démo — ${esc(data.clinique)}</h2>
     <p><strong>Nom :</strong> ${esc(data.nom)}</p>
-    <p><strong>Clinique :</strong> ${esc(data.clinique)}</p>
+    <p><strong>Établissement :</strong> ${esc(data.clinique)}</p>
     <p><strong>E-mail :</strong> ${esc(data.email)}</p>
     <p><strong>Téléphone :</strong> ${esc(data.telephone || '—')}</p>
     <p><strong>Taille de l'équipe :</strong> ${esc(data.praticiens)}</p>
